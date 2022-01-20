@@ -1,0 +1,14 @@
+.link {
+    &__form {
+        display: none;
+        background-color: var(--main-color);
+        width: 230px;
+        height: 50px;
+        margin: 0 auto;
+        border-radius: 10px;
+        text-align: center;
+        padding: 15px;
+        text-decoration: none;
+        color: white;
+    }
+}

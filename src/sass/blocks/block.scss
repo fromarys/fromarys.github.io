@@ -1,0 +1,19 @@
+.block {
+    display: block;
+    margin: 0 auto;
+    background-color: #fff;
+    height: 700px;
+    width: 600px;
+    text-align: center;
+    padding-top: 25px;
+    border-radius: 20px;
+    
+
+    &__title {
+        @include bottom-margin;
+    }
+    &__text {
+        @include bottom-margin;
+    }
+    
+}

@@ -1,0 +1,8 @@
+.number {
+    @include bottom-margin;
+    &__form {
+        height: 50px;
+        width: 400px;
+        font-size: 25px;
+    }
+}
