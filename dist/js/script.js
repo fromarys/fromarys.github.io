@@ -1,4 +1,3 @@
-let maxPhoneLength = 11;
 document.querySelector('.sendButton').onclick = myClick;
 
 function myClick() {
@@ -17,19 +16,20 @@ function myClick() {
             noEight = userText.replace('8', '7');
             finalResult = noEight;
         } else          
-            if (userText == "" || isNaN(+userText) == true || userText.length > maxPhoneLength) {
+            if (userText == "" || isNaN(+userText) == true) {
                 document.querySelector('.errorMessage').innerHTML = 'Пожалуйста, укажите номер телефона';
                 document.querySelector('.textOut').innerHTML = '';
+                document.querySelector('.textOut').style.display = 'none';
                 finalResult = '';
             } else {
                 finalResult = userText;
             }
 
-    if (userText !== "" && isNaN(+userText) == false && userText.length <= maxPhoneLength) {
+    if (userText !== "" && isNaN(+userText) == false) {
         document.querySelector('.errorMessage').innerHTML = '';
         let link = 'https://wa.me/' + finalResult;
         document.querySelector('.textOut').innerHTML = 'Перейти в WhatsApp';
         document.querySelector('.textOut').setAttribute('href', link);
-        document.querySelector('.textOut').style.display = 'block'
+        document.querySelector('.textOut').style.display = 'block';
     }
    }
