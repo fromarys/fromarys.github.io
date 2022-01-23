@@ -65,7 +65,7 @@ function myClick() {
                 } else {
                     createLink();
                 }
-            } else {
+            } else {https://github.com/fromarys/fromarys.github.io.git
                 if (hooksCheck) { // Проверка на скобки
                     removeHooks();
                     createLink();
@@ -143,6 +143,6 @@ function myClick() {
     // Конец функции
    }
 
-   /*global finalResult, noSpacesAndPlus, allRemoved, noEight */
+ 
 
    
