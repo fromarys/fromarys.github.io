@@ -1,35 +1,148 @@
 document.querySelector('.sendButton').onclick = myClick;
 
 function myClick() {
-    let userText = document.querySelector('.numberArea').value;
-    if (userText.includes(' ') || userText.includes('+')) {
-        noSpacesAndPlus = userText.replace( /\s/g, ""); // '\s - это регулярное выражение для "пробелов", а g - это "глобальный" флаг, что означает соответствие всем \s (пробелам).'
-        noSpacesAndPlus = noSpacesAndPlus.replace('+', '');
-        if (noSpacesAndPlus.indexOf('8') == 0) {
-            allRemoved = noSpacesAndPlus.replace('8', '7');
-            finalResult = allRemoved;
+    // Начало функции
+    let number = document.querySelector('.numberArea').value;
+
+    let plusAndEightCheck = number.includes('+') || number.indexOf('8') == 0;
+    let spaceCheck = number.includes(' ');
+    let dashCheck = number.includes('-');
+    let hooksCheck = number.includes('\(');
+
+
+    function createLink() {
+        
+        finalResult = result;
+        if (number == "" || isNaN(+finalResult) == true) {
+            document.querySelector('.errorMessage').innerHTML = 'Пожалуйста, укажите номер телефона';
+            document.querySelector('.textOut').innerHTML = '';
+            document.querySelector('.textOut').style.display = 'none';
+            finalResult = '';
         } else {
-            finalResult = noSpacesAndPlus;
+
+            document.querySelector('.errorMessage').innerHTML = '';
+            let link = 'https://wa.me/' + finalResult;
+            document.querySelector('.textOut').innerHTML = 'Перейти в WhatsApp';
+            document.querySelector('.textOut').setAttribute('href', link);
+            document.querySelector('.textOut').style.display = 'block';
         }
-    } else 
-        if (userText.indexOf('8') == 0) {
-            noEight = userText.replace('8', '7');
-            finalResult = noEight;
-        } else          
-            if (userText == "" || isNaN(+userText) == true) {
-                document.querySelector('.errorMessage').innerHTML = 'Пожалуйста, укажите номер телефона';
-                document.querySelector('.textOut').innerHTML = '';
-                document.querySelector('.textOut').style.display = 'none';
-                finalResult = '';
+   }
+
+ 
+
+   function plusAndEight() { //Удаляет пробел и заменяет 8 на 7
+        // 
+        noPlusAndEight = number.replace('+', '');
+        result = noPlusAndEight.replace('8', '7');
+   }
+
+   function removeSpace() {
+        result = result.replace( /\s/g, "");
+   }
+
+   function removeDash() {
+       result = result.replace( /-/g, "");
+   }
+
+   function removeHooks() {
+        result = result.replace(/\(/g, "").replace(/\)/g, "");
+        finalResult = result;
+        console.log(finalResult);
+   }
+
+// Начало условий проверки
+
+    if (plusAndEightCheck) { // Проверка на 8 и плюс и правильность текста
+        plusAndEight();
+
+        if (spaceCheck) { // Проверка на пробелы
+            removeSpace();
+            if (dashCheck) { // Проверка на тире
+                removeDash();
+                if (hooksCheck) { // Проверка на скобки
+                    removeHooks();
+                    createLink();
+                } else {
+                    createLink();
+                }
             } else {
-                finalResult = userText;
+                if (hooksCheck) { // Проверка на скобки
+                    removeHooks();
+                    createLink();
+                } else {
+                    createLink();
+                }
             }
 
-    if (userText !== "" && isNaN(+finalResult) == false) {
-        document.querySelector('.errorMessage').innerHTML = '';
-        let link = 'https://wa.me/' + finalResult;
-        document.querySelector('.textOut').innerHTML = 'Перейти в WhatsApp';
-        document.querySelector('.textOut').setAttribute('href', link);
-        document.querySelector('.textOut').style.display = 'block';
-    }
+
+        } else {
+            if (dashCheck) { // Проверка на тире
+                removeDash();
+                if (hooksCheck) { // Проверка на скобки
+                    removeHooks();
+                    createLink();
+                } else {
+                    createLink();
+                }
+            } else {
+                if (hooksCheck) { // Проверка на скобки
+                    removeHooks();
+                    createLink();
+                } else {
+                    createLink();
+                }
+            }
+        }
+        
+    } else { // нет плюса и 8
+        
+        if (spaceCheck) { // Проверка на пробелы
+            result = number;
+            removeSpace();
+            if (dashCheck) { // Проверка на тире
+                removeDash();
+                if (hooksCheck) { // Проверка на скобки
+                    removeHooks();
+                    createLink();
+                } else {
+                    createLink();
+                }
+            } else {
+                if (hooksCheck) { // Проверка на скобки
+                    removeHooks();
+                    createLink();
+                } else {
+                    createLink();
+                }
+            }
+
+
+        } else {
+            if (dashCheck) { // Проверка на тире
+                removeDash();
+                if (hooksCheck) { // Проверка на скобки
+                    removeHooks();
+                    createLink();
+                } else {
+                    createLink();
+                }
+            } else {
+                if (hooksCheck) { // Проверка на скобки
+                    result = number;
+                    removeHooks();
+                    createLink();
+                } else {
+                    result = number;
+                    createLink();
+                }
+            }
+        }
+    } 
+
+
+    // Конец функции
    }
+
+   /*global finalResult, noSpacesAndPlus, allRemoved, noEight */
+
+   
