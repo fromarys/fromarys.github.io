@@ -2,33 +2,55 @@ document.querySelector('.sendButton').onclick = myClick;
 
 function myClick() {
     // Начало функции
-    number = document.querySelector('.numberArea').value;
-    // if (userText.includes(' ') || userText.includes('+')) {
-    //     spcAndPls();
-    //     if (noSpacesAndPlus.indexOf('8') == 0) {
-    //         eightToSeven();
-    //     } else {
-    //         finalResult = noSpacesAndPlus;
-    //     }
-    // } else 
-    //     if (userText.indexOf('8') == 0) {
-    //         removeEight();
-    //     } else          
-    //         if (userText == "" || isNaN(+userText) == true) {
-    //             errorMessage();
-    //         } else {
-    //             finalResult = userText;
-    //         }
+    let number = document.querySelector('.numberArea').value;
 
-    // if (userText !== "" && isNaN(+finalResult) == false) {
-    //     createLink();
-    // }
-    plusAndEightCheck = number.includes('+') || number.indexOf('8') == 0;
-    spaceCheck = number.includes(' ');
-    dashCheck = number.includes('-');
-    hooksCheck = number.includes('/\(\)/');
-    // rightText = number !== "" && isNaN(+finalResult) == false;
-    // wrongText = number == "" && isNaN(+finalResult) == true;
+    let plusAndEightCheck = number.includes('+') || number.indexOf('8') == 0;
+    let spaceCheck = number.includes(' ');
+    let dashCheck = number.includes('-');
+    let hooksCheck = number.includes('\(');
+
+
+    function createLink() {
+        
+        finalResult = result;
+        if (number == "" || isNaN(+finalResult) == true) {
+            document.querySelector('.errorMessage').innerHTML = 'Пожалуйста, укажите номер телефона';
+            document.querySelector('.textOut').innerHTML = '';
+            document.querySelector('.textOut').style.display = 'none';
+            finalResult = '';
+        } else {
+
+            document.querySelector('.errorMessage').innerHTML = '';
+            let link = 'https://wa.me/' + finalResult;
+            document.querySelector('.textOut').innerHTML = 'Перейти в WhatsApp';
+            document.querySelector('.textOut').setAttribute('href', link);
+            document.querySelector('.textOut').style.display = 'block';
+        }
+   }
+
+ 
+
+   function plusAndEight() { //Удаляет пробел и заменяет 8 на 7
+        // 
+        noPlusAndEight = number.replace('+', '');
+        result = noPlusAndEight.replace('8', '7');
+   }
+
+   function removeSpace() {
+        result = result.replace( /\s/g, "");
+   }
+
+   function removeDash() {
+       result = result.replace( /-/g, "");
+   }
+
+   function removeHooks() {
+        result = result.replace(/\(/g, "").replace(/\)/g, "");
+        finalResult = result;
+        console.log(finalResult);
+   }
+
+// Начало условий проверки
 
     if (plusAndEightCheck) { // Проверка на 8 и плюс и правильность текста
         plusAndEight();
@@ -106,6 +128,7 @@ function myClick() {
                 }
             } else {
                 if (hooksCheck) { // Проверка на скобки
+                    result = number;
                     removeHooks();
                     createLink();
                 } else {
@@ -115,56 +138,11 @@ function myClick() {
             }
         }
     } 
-    // if (wrongText) {
-    //     errorMessage();
-    // }
+
 
     // Конец функции
    }
 
    /*global finalResult, noSpacesAndPlus, allRemoved, noEight */
 
-   function createLink() {
-        
-        finalResult = result;
-        if (number == "" || isNaN(+finalResult) == true) {
-            document.querySelector('.errorMessage').innerHTML = 'Пожалуйста, укажите номер телефона';
-            document.querySelector('.textOut').innerHTML = '';
-            document.querySelector('.textOut').style.display = 'none';
-            finalResult = '';
-        } else {
-
-            document.querySelector('.errorMessage').innerHTML = '';
-            let link = 'https://wa.me/' + finalResult;
-            document.querySelector('.textOut').innerHTML = 'Перейти в WhatsApp';
-            document.querySelector('.textOut').setAttribute('href', link);
-            document.querySelector('.textOut').style.display = 'block';
-        }
-   }
-
- 
-
-//    function errorMessage() {
-//         document.querySelector('.errorMessage').innerHTML = 'Пожалуйста, укажите номер телефона';
-//         document.querySelector('.textOut').innerHTML = '';
-//         document.querySelector('.textOut').style.display = 'none';
-//         finalResult = '';
-//    }
-
-   function plusAndEight() { //Удаляет пробел и заменяет 8 на 7
-        // 
-        noPlusAndEight = number.replace('+', '');
-        result = noPlusAndEight.replace('8', '7');
-   }
-
-   function removeSpace() {
-        result = result.replace( /\s/g, "");
-   }
-
-   function removeDash() {
-       result = result.replace( /-/g, "");
-   }
-
-   function removeHooks() {
-        finalResult = result.replace( /\s/g, "");
-   }
+   
