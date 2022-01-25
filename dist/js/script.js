@@ -25,7 +25,7 @@ function myClick() {
                 finalResult = userText;
             }
 
-    if (userText !== "" && isNaN(+userText) == false) {
+    if (userText !== "" && isNaN(+finalResult) == false) {
         document.querySelector('.errorMessage').innerHTML = '';
         let link = 'https://wa.me/' + finalResult;
         document.querySelector('.textOut').innerHTML = 'Перейти в WhatsApp';
