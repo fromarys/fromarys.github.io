@@ -33,7 +33,11 @@ function myClick() {
    function plusAndEight() { //Удаляет пробел и заменяет 8 на 7
         // 
         noPlusAndEight = number.replace('+', '');
-        result = noPlusAndEight.replace('8', '7');
+        if (number.indexOf('8') == 0) {
+            result = noPlusAndEight.replace('8', '7');
+        } else {
+            result = noPlusAndEight;
+        }
    }
 
    function removeSpace() {
@@ -65,7 +69,7 @@ function myClick() {
                 } else {
                     createLink();
                 }
-            } else {
+            } else {https://github.com/fromarys/fromarys.github.io.git
                 if (hooksCheck) { // Проверка на скобки
                     removeHooks();
                     createLink();
@@ -143,6 +147,6 @@ function myClick() {
     // Конец функции
    }
 
-   /*global finalResult, noSpacesAndPlus, allRemoved, noEight */
+ 
 
    
