@@ -1,5 +1,5 @@
 {
-  "name": "second-project",
+  "name": "my-first-pet-project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fromarys/myfirstproject.git"
+    "url": "git+https://github.com/fromarys/fromarys.github.io.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fromarys/myfirstproject/issues"
+    "url": "https://github.com/fromarys/fromarys.github.io/issues"
   },
-  "homepage": "https://github.com/fromarys/myfirstproject#readme",
+  "homepage": "https://github.com/fromarys/fromarys.github.io/tree/master#readme",
   "devDependencies": {
     "browser-sync": "^2.26.14",
     "gulp-autoprefixer": "^6.1.0",
